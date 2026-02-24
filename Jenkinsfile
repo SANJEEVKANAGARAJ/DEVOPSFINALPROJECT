@@ -1,5 +1,11 @@
 pipeline {
+
     agent any
+
+    environment {
+        DOCKER_IMAGE = "sanjeevrk4145/student-app"
+        SERVER_IP = "16.171.208.10"
+    }
 
     stages {
 
@@ -9,15 +15,33 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Image') {
             steps {
-                sh 'docker build -t student-app .'
+                sh 'docker build -t sanjeevrk4145/student-app .'
             }
         }
 
-        stage('Docker Image') {
+        stage('Push Image') {
             steps {
-                sh 'docker push yourdockerhubusername/student-app'
+                sh 'docker push sanjeevrk4145/student-app'
+            }
+        }
+
+        stage('Deploy to Cloud') {
+            steps {
+
+                sh '''
+                ssh ubuntu@your-cloud-server-ip << EOF
+
+                docker pull sanjeevrk4145/student-app
+
+                docker stop student-app || true
+                docker rm student-app || true
+
+                docker run -d -p 80:80 --name student-app sanjeevrk4145/student-app
+
+                EOF
+                '''
             }
         }
 
