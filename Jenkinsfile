@@ -31,8 +31,7 @@ pipeline {
             steps {
 
                 sh '''
-                ssh ubuntu@your-cloud-server-ip << EOF
-
+                ssh ubuntu@$SERVER_IP << EOF
                 docker pull sanjeevrk4145/student-app
 
                 docker stop student-app || true
