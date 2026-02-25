@@ -1,13 +1,11 @@
-FROM python:3.10
+# Use lightweight nginx to serve static files
+FROM nginx:alpine
 
-WORKDIR /app
+# Copy the static website into nginx's default serving directory
+COPY frontend/ /usr/share/nginx/html/
 
-COPY backend backend
-COPY frontend frontend
+# Expose port 80 for HTTP traffic
+EXPOSE 80
 
-RUN pip install fastapi uvicorn streamlit requests
-
-EXPOSE 8501
-EXPOSE 8000
-
-CMD uvicorn backend.main:app --host 0.0.0.0 --port 8000 & streamlit run frontend/app.py --server.port 8501 --server.address 0.0.0.0
+# Start nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
