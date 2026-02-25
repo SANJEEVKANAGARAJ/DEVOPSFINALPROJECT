@@ -11,6 +11,7 @@ pipeline {
 
         stage('Clone') {
             steps {
+                 git branch: 'main',
                 git 'https://github.com/SANJEEVKANAGARAJ/DEVOPSFINALPROJECT.git'
             }
         }
