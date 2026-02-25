@@ -11,7 +11,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git 'https://github.com/username/student-app.git'
+                git 'https://github.com/SANJEEVKANAGARAJ/DEVOPSFINALPROJECT.git'
             }
         }
 
