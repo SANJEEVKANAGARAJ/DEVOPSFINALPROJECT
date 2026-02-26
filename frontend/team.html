@@ -1,20 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Team | DevOps Project</title>
-</head>
-<body>
+    <title>Meet the Team — DevOps Pipeline Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<section id="team work" class="fade-in">
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --gradient-hero: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            --radius: 16px;
+            --shadow-glow: 0 0 60px rgba(59, 130, 246, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding-top: 80px;
+            overflow-x: hidden;
+        }
+
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image: linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10, 14, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .navbar__logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 0 40px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .team-card__avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--gradient-hero);
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-card__name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .team-card__role {
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-card__tasks {
+            list-style: none;
+            text-align: left;
+            border-top: 1px solid var(--border-glass);
+            padding-top: 24px;
+        }
+
+        .team-card__tasks li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .team-card__tasks li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-purple);
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn--ghost {
+            background: var(--bg-glass);
+            color: var(--text-primary);
+            border: 1px solid var(--border-glass);
+        }
+
+        .btn--ghost:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 80px 40px 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+
+    <nav class="navbar">
+        <a href="index.html" class="navbar__logo">⚙️ DevOps Explorer</a>
+    </nav>
+
     <div class="container">
-        <div class="section-heading">
-            <h2 class="section-heading__title">Meet the Team</h2>
-            <p class="section-heading__desc">
-    Each member owns a core DevOps responsibility and contributes equally to the CI/CD pipeline.
-</p>
-        </div>
+        <header class="fade-in">
+            <h1>Meet the Engineers</h1>
+            <p class="subtitle">The team behind the automated CI/CD pipeline and the interactive explorer.</p>
+        </header>
 
         <div class="team-grid">
 
@@ -33,56 +262,54 @@
         </ul>
     </div>
 
-    <!-- Member 2 -->
-    <div class="team-card">
-        <div class="team-card__avatar">RT</div>
-        <div class="team-card__name">Ratnesh</div>
-        <div class="team-card__role">AWS Cloud & Deployment</div>
-        <ul class="team-card__tasks">
-            <li>AWS EC2 instance setup</li>
-            <li>SSH-based deployment</li>
-            <li>Container runtime management</li>
-            <li>Cloud networking & security</li>
-            <li>System architecture documentation</li>
-            <li>Branch ownership: ratnesh-docs</li>
-        </ul>
-    </div>
+            <!-- Ratnesh -->
+            <div class="team-card fade-in" style="animation-delay: 0.2s;">
+                <div class="team-card__avatar">RT</div>
+                <div class="team-card__name">Ratnesh</div>
+                <div class="team-card__role">AWS Cloud & Deployment</div>
+                <ul class="team-card__tasks">
+                    <li>AWS EC2 instance setup</li>
+                    <li>SSH-based deployment</li>
+                    <li>Container runtime management</li>
+                    <li>Cloud networking & security</li>
+                    <li>System architecture documentation</li>
+                </ul>
+            </div>
 
-    <!-- Member 3 -->
-    <div class="team-card">
-        <div class="team-card__avatar">PR</div>
-        <div class="team-card__name">Pranav</div>
-        <div class="team-card__role">Docker & Containerization</div>
-        <ul class="team-card__tasks">
-            <li>Dockerfile creation & explanation</li>
-            <li>Docker image build process</li>
-            <li>Docker push to Docker Hub</li>
-            <li>Container vs Virtual Machine analysis</li>
-            <li>Tools & technologies page</li>
-            <li>CONTRIBUTING.md guidelines</li>
-            <li>Branch ownership: pranav</li>
-        </ul>
-    </div>
+            <!-- Pranav -->
+            <div class="team-card fade-in" style="animation-delay: 0.3s;">
+                <div class="team-card__avatar">PR</div>
+                <div class="team-card__name">Pranav</div>
+                <div class="team-card__role">Docker & Containerization</div>
+                <ul class="team-card__tasks">
+                    <li>Dockerfile creation & explanation</li>
+                    <li>Docker image build process</li>
+                    <li>Docker push to Docker Hub</li>
+                    <li>Container vs VM analysis</li>
+                    <li>Tools & technologies page</li>
+                </ul>
+            </div>
 
-    <!-- Member 4 -->
-    <div class="team-card">
-        <div class="team-card__avatar">GK</div>
-        <div class="team-card__name">Gokul Krishna</div>
-        <div class="team-card__role">CI/CD Automation & Documentation</div>
-        <ul class="team-card__tasks">
-            <li>CI/CD automation explanation</li>
-            <li>End-to-end pipeline documentation</li>
-            <li>User stories definition</li>
-            <li>Team profiles page</li>
-            <li>Animations for team section</li>
-            <li>Content structuring & validation</li>
-            <li>Branch ownership: gokul</li>
-        </ul>
-    </div>
+            <!-- Gokul -->
+            <div class="team-card fade-in" style="animation-delay: 0.4s;">
+                <div class="team-card__avatar">GK</div>
+                <div class="team-card__name">Gokul Krishna</div>
+                <div class="team-card__role">CI/CD Automation & Docs</div>
+                <ul class="team-card__tasks">
+                    <li>CI/CD automation explanation</li>
+                    <li>End-to-end pipeline documentation</li>
+                    <li>User stories definition</li>
+                    <li>Team profiles page</li>
+                    <li>Frontend visual enhancements</li>
+                </ul>
+            </div>
+        </div>
 
-</div>
+        <footer class="fade-in" style="animation-delay: 0.5s;">
+            <a href="index.html" class="btn btn--ghost">← Back to Dashboard</a>
+            <p style="margin-top: 24px;">Built with ❤️ and a healthy dose of irony | PSG College of Technology</p>
+        </footer>
     </div>
-</section>
-
 </body>
+
 </html>
