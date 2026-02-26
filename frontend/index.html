@@ -938,12 +938,13 @@
     <nav class="navbar" id="navbar">
         <div class="navbar__logo">⚙️ DevOps Explorer</div>
         <ul class="navbar__links">
-            <li><a href="#pipeline">Pipeline</a></li>
-            <li><a href="#tools">Tools</a></li>
-            <li><a href="#dockerfile">Dockerfile</a></li>
-            <li><a href="#workflow">Git Workflow</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pipeline.html">Pipeline</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="dockerfile.html">Dockerfile</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="#workflow">Workflow</a></li>
             <li><a href="#checklist">Checklist</a></li>
-            <li><a href="#team">Team</a></li>
         </ul>
     </nav>
 
@@ -951,14 +952,15 @@
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero__badge">
-                <span>🚀 DevOps Final Project</span> 
+                <span>🚀 DevOps Final Project</span>
             </div>
             <h1 class="hero__title">
                 From <span class="gradient-text">Code</span> to <span class="gradient-text">Cloud</span><br />
                 Our CI/CD Journey
             </h1>
             <p class="hero__subtitle">
-                An interactive  Sanjeev exploration of our complete DevOps pipeline — how we write, build, containerize, and
+                An interactive Sanjeev exploration of our complete DevOps pipeline — how we write, build, containerize,
+                and
                 deploy software automatically.
             </p>
             <div class="hero__cta">
@@ -1067,17 +1069,14 @@
                             <h3 class="stage-content__title">Deploy to Cloud (EC2)</h3>
                         </div>
                         <p class="stage-content__desc">
-                            Jenkins SSHs into our AWS EC2 instance, pulls the latest Docker image, stops the old
-                            container, and starts a fresh one — zero-downtime deployment.
+                            The final stage where our container is pushed to a live environment. We use zero-downtime
+                            tactics to swap old containers for new ones.
                         </p>
-                        <div class="code-block">
-                            <span class="keyword">stage</span>(<span class="string">'Deploy to Cloud'</span>) {<br />
-                            &nbsp;&nbsp;<span class="cmd">ssh</span> ubuntu@$SERVER_IP<br />
-                            &nbsp;&nbsp;<span class="cmd">docker pull</span> <span
-                                class="string">$DOCKER_IMAGE</span><br />
-                            &nbsp;&nbsp;<span class="cmd">docker run</span> <span class="string">-d -p 80:80 --name
-                                student-app $DOCKER_IMAGE</span><br />
-                            }
+                        <div style="text-align: right;">
+                            <a href="pipeline.html" class="btn btn--ghost"
+                                style="padding: 8px 16px; font-size: 0.8rem;">
+                                View Full Pipeline Details →
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1098,34 +1097,24 @@
             <div class="tools-grid fade-in">
                 <div class="tool-card">
                     <span class="tool-card__icon">🐙</span>
-                    <div class="tool-card__name">GitHub</div>
-                    <div class="tool-card__desc">Version control & collaboration</div>
+                    <div class="tool-card__name">Git & GitHub</div>
+                    <div class="tool-card__desc">Source control & PR workflow</div>
                 </div>
                 <div class="tool-card">
                     <span class="tool-card__icon">🏗️</span>
-                    <div class="tool-card__name">Jenkins</div>
-                    <div class="tool-card__desc">CI/CD automation server</div>
+                    <div class="tool-card__name">Jenkins CI/CD</div>
+                    <div class="tool-card__desc">Automation orchestration</div>
                 </div>
                 <div class="tool-card">
                     <span class="tool-card__icon">🐳</span>
                     <div class="tool-card__name">Docker</div>
-                    <div class="tool-card__desc">Containerization platform</div>
+                    <div class="tool-card__desc">Application containerization</div>
                 </div>
-                <div class="tool-card">
-                    <span class="tool-card__icon">📦</span>
-                    <div class="tool-card__name">Docker Hub</div>
-                    <div class="tool-card__desc">Public container registry</div>
-                </div>
-                <div class="tool-card">
-                    <span class="tool-card__icon">☁️</span>
-                    <div class="tool-card__name">AWS EC2</div>
-                    <div class="tool-card__desc">Cloud compute instance</div>
-                </div>
-                <div class="tool-card">
-                    <span class="tool-card__icon">🌐</span>
-                    <div class="tool-card__name">Nginx</div>
-                    <div class="tool-card__desc">Web server for static files</div>
-                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;" class="fade-in">
+                <a href="tools.html" class="btn btn--ghost">
+                    🛠️ Why we chose these tools
+                </a>
             </div>
         </div>
     </section>
@@ -1302,40 +1291,30 @@
                 <div class="team-card">
                     <div class="team-card__avatar">SK</div>
                     <div class="team-card__name">Sanjeev K</div>
-                    <div class="team-card__role">DevOps & Infrastructure</div>
-                    <ul class="team-card__tasks">
-                        <li>AWS EC2 instance setup</li>
-                        <li>Jenkins server configuration</li>
-                        <li>Jenkinsfile pipeline stages</li>
-                        <li>Docker Hub registry setup</li>
-                        <li>SSH deployment automation</li>
-                    </ul>
+                    <div class="team-card__role">Jenkins & CI Orchestration</div>
                 </div>
                 <div class="team-card">
-                    <div class="team-card__avatar">SR</div>
-                    <div class="team-card__name">Sratn</div>
-                    <div class="team-card__role">Application & CI/CD</div>
-                    <ul class="team-card__tasks">
-                        <li>Static website development</li>
-                        <li>Dockerfile creation</li>
-                        <li>GitHub Actions workflow</li>
-                        <li>README & documentation</li>
-                        <li>Git branching & PRs</li>
-                    </ul>
+                    <div class="team-card__avatar">RT</div>
+                    <div class="team-card__name">Ratnesh</div>
+                    <div class="team-card__role">AWS Cloud & Deployment</div>
                 </div>
                 <div class="team-card">
-                    <div class="team-card__avatar">TM</div>
-                    <div class="team-card__name">Team Member 3</div>
-                    <div class="team-card__role">QA & Documentation</div>
-                    <ul class="team-card__tasks">
-                        <li>User stories definition</li>
-                        <li>Testing Docker image</li>
-                        <li>Commit history management</li>
-                        <li>Pull request reviews</li>
-                        <li>Project documentation</li>
-                    </ul>
+                    <div class="team-card__avatar">PR</div>
+                    <div class="team-card__name">Pranav</div>
+                    <div class="team-card__role">Docker & Containerization</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-card__avatar">GK</div>
+                    <div class="team-card__name">Gokul Krishna</div>
+                    <div class="team-card__role">CI/CD Automation & Docs</div>
                 </div>
             </div>
+            <div style="text-align: center; margin-top: 40px;" class="fade-in">
+                <a href="team.html" class="btn btn--primary">
+                    👥 Meet the Developers
+                </a>
+            </div>
+        </div>
         </div>
     </section>
 
@@ -1350,7 +1329,8 @@
                     docker run -d -p 80:80 sanjeevrk4145/student-app
                 </div>
                 <p style="color:var(--text-muted);font-size:0.82rem;margin-top:16px;">Then open
-                    <strong>http://localhost</strong> in your browser 🎉</p>
+                    <strong>http://localhost</strong> in your browser 🎉
+                </p>
             </div>
         </div>
     </section>
