@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DevOps Tools – Why We Used Them</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-card: rgba(17, 24, 39, 0.75);
+  --border-glass: rgba(255,255,255,0.08);
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 100px 24px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-heading h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.section-heading p {
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: auto;
+}
+
+/* ─── Tools Grid ───────────────────────────── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+/* ─── Flip Card ───────────────────────────── */
+.tool-flip {
+  perspective: 1200px;
+}
+
+.tool-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.tool-flip:hover .tool-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.tool-card {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius);
+  padding: 32px 26px;
+  backdrop-filter: blur(12px);
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.tool-front span {
+  font-size: 3rem;
+  margin-bottom: 14px;
+}
+
+.tool-front h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.tool-front p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.tool-back {
+  transform: rotateY(180deg);
+}
+
+.tool-back h4 {
+  font-size: 1.1rem;
+  color: var(--accent-cyan);
+  margin-bottom: 10px;
+}
+
+.tool-back p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ─── Back Link ───────────────────────────── */
+.back-link {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.back-link a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="section-heading">
+    <h1>🛠️ Tools We Used</h1>
+    <p>
+      Hover on each card to understand why this tool was chosen
+      for our DevOps CI/CD pipeline.
+    </p>
+  </div>
+
+  <div class="tools-grid">
+
+    <!-- GitHub -->
+    <div class="tool-flip">
+      <div class="tool-flip-inner">
+        <div class="tool-card tool-front">
+          <span>🐙</span>
+          <h3>GitHub</h3>
+          <p>Version Control</p>
+        </div>
+        <div class="tool-card tool-back">
+          <h4>Why GitHub?</h4>
+          <p>
+            Used to store source code, manage commits, collaborate using pull
+            requests, and trigger CI/CD pipelines automatically.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jenkins -->
+    <div class="tool-flip">
+      <div class="tool-flip-inner">
+        <div class="tool-card tool-front">
+          <span>🏗️</span>
+          <h3>Jenkins</h3>
+          <p>CI/CD Automation</p>
+        </div>
+        <div class="tool-card tool-back">
+          <h4>Why Jenkins?</h4>
+          <p>
+            Automates cloning, Docker image build, pushing to Docker Hub,
+            and deploying to AWS EC2 without manual effort.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Docker -->
+    <div class="tool-flip">
+      <div class="tool-flip-inner">
+        <div class="tool-card tool-front">
+          <span>🐳</span>
+          <h3>Docker</h3>
+          <p>Containerization</p>
+        </div>
+        <div class="tool-card tool-back">
+          <h4>Why Docker?</h4>
+          <p>
+            Ensures the application runs the same everywhere by packaging
+            code, dependencies, and runtime into a single container.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Docker Hub -->
+    <div class="tool-flip">
+      <div class="tool-flip-inner">
+        <div class="tool-card tool-front">
+          <span>📦</span>
+          <h3>Docker Hub</h3>
+          <p>Image Registry</p>
+        </div>
+        <div class="tool-card tool-back">
+          <h4>Why Docker Hub?</h4>
+          <p>
+            Stores Docker images so Jenkins and EC2 can pull the latest
+            version of the application from anywhere.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AWS EC2 -->
+    <div class="tool-flip">
+      <div class="tool-flip-inner">
+        <div class="tool-card tool-front">
+          <span>☁️</span>
+          <h3>AWS EC2</h3>
+          <p>Cloud Hosting</p>
+        </div>
+        <div class="tool-card tool-back">
+          <h4>Why AWS EC2?</h4>
+          <p>
+            Provides real cloud infrastructure to host Jenkins and deploy
+            the Docker container in a production-like environment.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nginx -->
+    <div class="tool-flip">
+      <div class="tool-flip-inner">
+        <div class="tool-card tool-front">
+          <span>🌐</span>
+          <h3>Nginx</h3>
+          <p>Web Server</p>
+        </div>
+        <div class="tool-card tool-back">
+          <h4>Why Nginx?</h4>
+          <p>
+            Lightweight and high-performance server used inside the
+            Docker container to serve static frontend files.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">← Back to Pipeline</a>
+  </div>
+</div>
+
+</body>
+</html>
