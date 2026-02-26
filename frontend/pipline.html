@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipeline Details — Jenkins CI/CD Stages</title>
+
+    <!-- Same Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            margin-top: 40px;
+            color: #06b6d4;
+        }
+
+        p {
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        .stage-card {
+            background: rgba(17,24,39,0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .code {
+            background: rgba(0,0,0,0.4);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #10b981;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+
+        .flow {
+            background: rgba(59,130,246,0.1);
+            border: 1px solid rgba(59,130,246,0.2);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        .navbar {
+            background: rgba(10,14,26,0.9);
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .navbar a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="index.html">← Back to Main</a>
+</div>
+
+<div class="container">
+
+<h1>Jenkins Pipeline — Detailed Explanation</h1>
+
+<p>
+This page explains the complete Jenkins CI/CD pipeline used in our DevOps project.
+Each stage plays a critical role in automatically building and deploying the application.
+</p>
+
+
+<!-- Stage 1 -->
+<div class="stage-card">
+
+<h2>Stage 1: Clone Stage</h2>
+
+<p><strong>What it does:</strong><br>
+Jenkins connects to GitHub and downloads the latest version of the source code from the repository.
+</p>
+
+<p><strong>Why it is necessary:</strong><br>
+Ensures Jenkins always builds the most recent and approved version of the code.
+Without cloning, Jenkins cannot access the application files.
+</p>
+
+<div class="code">
+stage('Clone Repository') {
+    steps {
+        git branch: 'main',
+        url: 'https://github.com/YOUR_REPO_URL'
+    }
+}
+</div>
+
+<p><strong>Explanation:</strong><br>
+Jenkins pulls the code from GitHub main branch and prepares it for build and deployment.
+</p>
+
+</div>
+
+
+<!-- Stage 2 -->
+<div class="stage-card">
+
+<h2>Stage 2: Build Stage</h2>
+
+<p><strong>What it does:</strong><br>
+This stage prepares the application and ensures all files are ready for container creation.
+</p>
+
+<p><strong>Why it is necessary:</strong><br>
+Confirms that the application structure is correct and ready to be packaged.
+Prevents deployment of broken or incomplete code.
+</p>
+
+<div class="code">
+stage('Build') {
+    steps {
+        echo "Building application..."
+    }
+}
+</div>
+
+<p><strong>Explanation:</strong><br>
+Jenkins prepares the environment and verifies the application before Docker packaging.
+</p>
+
+</div>
+
+
+<!-- Stage 3 -->
+<div class="stage-card">
+
+<h2>Stage 3: Docker Build and Push Stage</h2>
+
+<p><strong>What it does:</strong><br>
+Creates a Docker image of the application and uploads it to Docker Hub.
+</p>
+
+<p><strong>Why it is necessary:</strong><br>
+Docker ensures application runs consistently on any machine.
+Docker Hub allows easy deployment anywhere.
+</p>
+
+<div class="code">
+stage('Docker Build') {
+    steps {
+        sh 'docker build -t sanjeevrk4145/student-app .'
+        sh 'docker push sanjeevrk4145/student-app'
+    }
+}
+</div>
+
+<p><strong>Explanation:</strong><br>
+Jenkins creates container image and pushes it to Docker Hub registry.
+</p>
+
+</div>
+
+
+<!-- Stage 4 -->
+<div class="stage-card">
+
+<h2>Stage 4: Deployment Stage</h2>
+
+<p><strong>What it does:</strong><br>
+Deploys the application on AWS EC2 by running the Docker container.
+</p>
+
+<p><strong>Why it is necessary:</strong><br>
+Makes the application available to users.
+Without deployment, application cannot be accessed.
+</p>
+
+<div class="code">
+stage('Deploy') {
+    steps {
+        sh 'docker pull sanjeevrk4145/student-app'
+        sh 'docker run -d -p 80:80 sanjeevrk4145/student-app'
+    }
+}
+</div>
+
+<p><strong>Explanation:</strong><br>
+EC2 pulls latest image and runs container, making application live.
+</p>
+
+</div>
+
+
+<!-- Pipeline Flow -->
+<div class="flow">
+
+<h2>Complete Pipeline Flow</h2>
+
+<p>
+Step 1: Developer pushes code to GitHub<br><br>
+
+Step 2: Jenkins detects change and starts pipeline<br><br>
+
+Step 3: Jenkins clones repository<br><br>
+
+Step 4: Jenkins builds application<br><br>
+
+Step 5: Jenkins builds Docker image<br><br>
+
+Step 6: Jenkins pushes image to Docker Hub<br><br>
+
+Step 7: Jenkins deploys application to AWS EC2<br><br>
+
+Step 8: Application becomes live
+</p>
+
+</div>
+
+</div>
+
+</body>
+</html>
